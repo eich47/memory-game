@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 
 export function RestartGameButton() {
-  return <button className="button button_restart">Начать заново</button>;
+  const { stopGame } = useContext(AppContext);
+  return (
+    <button className="button button_restart" onClick={stopGame}>
+      Начать заново
+    </button>
+  );
 }

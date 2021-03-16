@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 
 export function StartGameButton() {
-  return <button className="button button_start">Начать игру</button>;
+  const { startGame } = useContext(AppContext);
+  return (
+    <button className="button button_start" onClick={startGame}>
+      Начать игру
+    </button>
+  );
 }
