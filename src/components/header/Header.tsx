@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { RestartGameButton } from "../buttons/RestartGameButton";
+import { StopGameButton } from "../buttons/StopGameButton";
 import { StartGameButton } from "../buttons/StartGameButton";
+import "./Header.css";
 
 const Header = () => {
   const { gameState } = useContext(AppContext);
   return (
     <header className="header">
-      {gameState ? <RestartGameButton /> : <StartGameButton />}
+      {gameState ? <StopGameButton /> : <StartGameButton />}
     </header>
   );
 };
