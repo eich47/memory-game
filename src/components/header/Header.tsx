@@ -1,6 +1,6 @@
 import React from "react";
-import { RestartGameButton } from "./RestartGameButton";
-import { StartGameButton } from "./StartGameButton";
+import { RestartGameButton } from "../buttons/RestartGameButton";
+import { StartGameButton } from "../buttons/StartGameButton";
 
 const Header = () => {
   return (
