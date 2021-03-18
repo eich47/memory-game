@@ -24,3 +24,34 @@ export function generateCards(numberCard = 16): Card[] {
 const sortCards = (arrCars: Array<Card>) => {
   return arrCars.sort(() => Math.random() - 0.5);
 };
+
+export function openSelectedCard(
+  cardsList: Card[],
+  selectedCard: Card
+): Card[] {
+  return cardsList.map((c) => {
+    if (c === selectedCard) {
+      c.isOpen = true;
+    }
+    return c;
+  });
+}
+
+export function closeCards(
+  cardsList: Array<Card>,
+  oneOpenCard: Card,
+  secondOpenCard: Card
+): Card[] {
+  return cardsList.map((c) => {
+    if (c === oneOpenCard || c === secondOpenCard) {
+      c.isOpen = false;
+    }
+    return c;
+  });
+}
+
+export function isCardsIsWon(oneCard: Card, secondCard: Card): boolean {
+  return (
+    oneCard.figure === secondCard.figure && oneCard.color === secondCard.color
+  );
+}

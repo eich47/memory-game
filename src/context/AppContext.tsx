@@ -1,6 +1,11 @@
 import * as React from "react";
 import { createContext } from "react";
-import { generateCards } from "../models/Card";
+import {
+  closeCards,
+  generateCards,
+  isCardsIsWon,
+  openSelectedCard,
+} from "../models/Card";
 import { Card } from "../models/Types";
 
 const startGame = () => {
@@ -34,6 +39,12 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [gameState, setGameState] = React.useState(false);
 
+  const [firstSelectedCard, setFirstSelectedCard] = React.useState<Card | null>(
+    null
+  );
+
+  const [isProgress, setIsProgress] = React.useState(false);
+
   const startGame = () => {
     setGameState(true);
     const cards: Card[] = generateCards();
@@ -46,13 +57,29 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const openCard = (card: Card) => {
-    const updatedCards = cards.map((c) => {
-      if (c === card) {
-        c.isOpen = true;
+    if (isProgress) return;
+    if (card.isOpen) return;
+
+    if (firstSelectedCard === null) {
+      setFirstSelectedCard(card);
+      setCards(openSelectedCard(cards, card));
+    } else {
+      setIsProgress(true);
+      setCards(openSelectedCard(cards, card));
+
+      if (isCardsIsWon(firstSelectedCard, card)) {
+        console.log("карты угаданы");
+        setFirstSelectedCard(null);
+        setIsProgress(false);
+      } else {
+        console.log("карты НЕ угаданы");
+        setTimeout(() => {
+          setCards(closeCards(cards, firstSelectedCard, card));
+          setFirstSelectedCard(null);
+          setIsProgress(false);
+        }, 1500);
       }
-      return c;
-    });
-    setCards(updatedCards);
+    }
   };
 
   return (
