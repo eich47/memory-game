@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import CardItem from "../card/CardItem";
+import "./CardList.css";
 
 const CardList = () => {
   const { cards } = useContext(AppContext);
