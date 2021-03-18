@@ -1,5 +1,7 @@
 import * as React from "react";
 import { createContext } from "react";
+import { generateCards } from "../models/Card";
+import { Card } from "../models/Types";
 
 const startGame = () => {
   console.log("not implement start game function");
@@ -8,11 +10,6 @@ const startGame = () => {
 const stopGame = () => {
   console.log("not implement stop game function");
 };
-
-export interface Card {
-  figure: string;
-  color: string;
-}
 
 export const AppContext = createContext({
   cards: [],
@@ -30,14 +27,14 @@ export const AppContext = createContext({
 });
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cards, setCards] = React.useState([
-    { figure: "square", color: "green" },
-  ]);
+  const [cards, setCards] = React.useState<Array<Card>>([]);
 
   const [gameState, setGameState] = React.useState(false);
 
   const startGame = () => {
     setGameState(true);
+    const cards: Card[] = generateCards();
+    setCards(cards);
   };
 
   const stopGame = () => {
