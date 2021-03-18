@@ -39,6 +39,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   const stopGame = () => {
     setGameState(false);
+    setCards([]);
   };
 
   return (
