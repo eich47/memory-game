@@ -6,6 +6,11 @@ import {
   isCardsIsWon,
   openSelectedCard,
 } from "../models/Card";
+import {
+  decreaseScore,
+  increaseScore,
+  resetScore,
+} from "../models/score/ScoreModel";
 import { Card } from "../models/Types";
 
 const startGame = () => {
@@ -22,12 +27,14 @@ const openCard = (card: Card) => {
 
 export const AppContext = createContext({
   cards: [],
+  score: 0,
   gameState: false, //game is running
   startGame: startGame,
   stopGame: stopGame,
   openCard: openCard,
 } as {
   cards: Card[];
+  score: number;
   gameState: boolean;
   startGame: typeof startGame;
   stopGame: typeof stopGame;
@@ -45,6 +52,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [isProgress, setIsProgress] = React.useState(false);
 
+  const [score, setScore] = React.useState(0);
+
   const startGame = () => {
     setGameState(true);
     const cards: Card[] = generateCards();
@@ -54,6 +63,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const stopGame = () => {
     setGameState(false);
     setCards([]);
+    setScore(resetScore());
   };
 
   const openCard = (card: Card) => {
@@ -71,8 +81,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         console.log("карты угаданы");
         setFirstSelectedCard(null);
         setIsProgress(false);
+        setScore(increaseScore(score));
       } else {
         console.log("карты НЕ угаданы");
+        setScore(decreaseScore(score));
         setTimeout(() => {
           setCards(closeCards(cards, firstSelectedCard, card));
           setFirstSelectedCard(null);
@@ -84,7 +96,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ cards, gameState, startGame, stopGame, openCard }}
+      value={{ cards, gameState, startGame, stopGame, openCard, score }}
     >
       {children}
     </AppContext.Provider>

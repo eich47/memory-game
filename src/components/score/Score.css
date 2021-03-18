@@ -1,0 +1,12 @@
+.score {
+  display: flex;
+  align-items: center;
+}
+
+.score__text {
+  font-weight: bold;
+}
+
+.score__value {
+  margin-left: 16px;
+}
