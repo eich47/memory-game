@@ -10,8 +10,11 @@ const CardItem = (props: CardProps) => {
   const styles = { backgroundColor: backgroundColor };
   return (
     <div className="card">
-      <div className="card__container" style={styles}>
-        <span className="card__content">{text}</span>
+      <div className="card__container">
+        <div className="card__box-front">front of card</div>
+        <div className="card__box-back" style={styles}>
+          <span className="card__content">{text}</span>
+        </div>
       </div>
     </div>
   );
