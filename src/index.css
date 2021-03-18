@@ -355,3 +355,12 @@ template {
 ::before {
   box-sizing: border-box;
 }
+
+/**
+*shared style
+*/
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}

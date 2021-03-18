@@ -9,7 +9,11 @@ function App() {
     <AppProvider>
       <div className="App">
         <Header />
-        <CardList />
+        <main>
+          <div className="wrapper">
+            <CardList />
+          </div>
+        </main>
       </div>
     </AppProvider>
   );
