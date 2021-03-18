@@ -11,19 +11,22 @@ const stopGame = () => {
   console.log("not implement stop game function");
 };
 
+const openCard = (card: Card) => {
+  console.log("not implement open card function");
+};
+
 export const AppContext = createContext({
   cards: [],
   gameState: false, //game is running
   startGame: startGame,
   stopGame: stopGame,
+  openCard: openCard,
 } as {
-  cards: {
-    figure: string;
-    color: string;
-  }[];
+  cards: Card[];
   gameState: boolean;
   startGame: typeof startGame;
   stopGame: typeof stopGame;
+  openCard: typeof openCard;
 });
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -42,8 +45,20 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setCards([]);
   };
 
+  const openCard = (card: Card) => {
+    const updatedCards = cards.map((c) => {
+      if (c === card) {
+        c.isOpen = true;
+      }
+      return c;
+    });
+    setCards(updatedCards);
+  };
+
   return (
-    <AppContext.Provider value={{ cards, gameState, startGame, stopGame }}>
+    <AppContext.Provider
+      value={{ cards, gameState, startGame, stopGame, openCard }}
+    >
       {children}
     </AppContext.Provider>
   );

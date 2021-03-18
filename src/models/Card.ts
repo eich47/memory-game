@@ -8,7 +8,11 @@ export function generateCards(numberCard = 16): Card[] {
 
   while (count <= pairCount) {
     const ind = `COLOR${count}`;
-    const obj: Card = { figure: count + "", color: `${colors[ind]}` };
+    const obj: Card = {
+      figure: count + "",
+      color: `${colors[ind]}`,
+      isOpen: false,
+    };
     res.push(Object.assign({}, obj));
     res.push(Object.assign({}, obj));
     count++;
