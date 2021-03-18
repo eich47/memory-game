@@ -6,8 +6,8 @@ import "./CardList.css";
 const CardList = () => {
   const { cards } = useContext(AppContext);
 
-  const listFromCards = cards.map((card) => {
-    return <CardItem {...card} />;
+  const listFromCards = cards.map((card, i) => {
+    return <CardItem key={cards.length - i} {...card} />;
   });
   return <div className="cards-list">{listFromCards}</div>;
 };
