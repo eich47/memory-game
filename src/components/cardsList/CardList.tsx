@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { Card } from "../../models/Types";
 import CardItem from "../card/CardItem";
 import "./CardList.css";
 

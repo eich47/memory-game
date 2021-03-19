@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import CardList from "./components/cardsList/CardList";
 import Header from "./components/header/Header";
+import Main from "./components/main/Main";
 import AppProvider from "./context/AppContext";
 
 function App() {
@@ -9,11 +9,7 @@ function App() {
     <AppProvider>
       <div className="App">
         <Header />
-        <main>
-          <div className="wrapper">
-            <CardList />
-          </div>
-        </main>
+        <Main />
       </div>
     </AppProvider>
   );

@@ -6,6 +6,7 @@ import {
   isCardsIsWon,
   openSelectedCard,
 } from "../models/Card";
+import { isGameEnd } from "../models/game/GameModel";
 import {
   decreaseScore,
   increaseScore,
@@ -32,13 +33,15 @@ export const AppContext = createContext({
   startGame: startGame,
   stopGame: stopGame,
   openCard: openCard,
+  isProgress: false,
 } as {
   cards: Card[];
-  score: number;
+  score: number | null;
   gameState: boolean;
   startGame: typeof startGame;
   stopGame: typeof stopGame;
   openCard: typeof openCard;
+  isProgress: boolean;
 });
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -52,7 +55,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [isProgress, setIsProgress] = React.useState(false);
 
-  const [score, setScore] = React.useState(0);
+  const [score, setScore] = React.useState<number | null>(null);
 
   const startGame = () => {
     setGameState(true);
@@ -82,6 +85,9 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         setFirstSelectedCard(null);
         setIsProgress(false);
         setScore(increaseScore(score));
+        if (isGameEnd(cards)) {
+          setGameState(false);
+        }
       } else {
         console.log("карты НЕ угаданы");
         setScore(decreaseScore(score));
@@ -96,7 +102,15 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ cards, gameState, startGame, stopGame, openCard, score }}
+      value={{
+        cards,
+        gameState,
+        startGame,
+        stopGame,
+        openCard,
+        score,
+        isProgress,
+      }}
     >
       {children}
     </AppContext.Provider>
