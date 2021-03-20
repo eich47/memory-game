@@ -7,3 +7,11 @@ export interface Card {
 export interface Colors {
   [key: string]: string;
 }
+
+export interface Settings {
+  cardNumber: number;
+}
+
+//key in the localStorage
+
+export const cardNumberKeyStorage = "card-number";
