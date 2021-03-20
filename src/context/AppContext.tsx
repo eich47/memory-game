@@ -1,9 +1,11 @@
 import * as React from "react";
 import { createContext } from "react";
 import {
+  closeAllCards,
   closeCards,
   generateCards,
   isCardsIsWon,
+  openAllCards,
   openSelectedCard,
 } from "../models/Card";
 import { isGameEnd } from "../models/game/GameModel";
@@ -60,7 +62,13 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const startGame = () => {
     setGameState(true);
     const cards: Card[] = generateCards();
-    setCards(cards);
+    const openedCards = openAllCards(cards);
+    setCards(openedCards);
+    const timeOpenCards = 3000;
+    setTimeout(() => {
+      const closedCards = closeAllCards(cards);
+      setCards(closedCards);
+    }, timeOpenCards);
   };
 
   const stopGame = () => {

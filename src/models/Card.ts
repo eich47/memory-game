@@ -55,3 +55,17 @@ export function isCardsIsWon(oneCard: Card, secondCard: Card): boolean {
     oneCard.figure === secondCard.figure && oneCard.color === secondCard.color
   );
 }
+
+export function openAllCards(cards: Card[]): Card[] {
+  return cards.map((card) => {
+    card.isOpen = true;
+    return card;
+  });
+}
+
+export function closeAllCards(cards: Card[]): Card[] {
+  return cards.map((card) => {
+    card.isOpen = false;
+    return card;
+  });
+}
