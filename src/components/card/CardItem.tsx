@@ -20,7 +20,7 @@ const CardItem = (props: CardProps) => {
   return (
     <div className="card" onClick={handleClick}>
       <div className={`card__container ${isOpenClass}`}>
-        <div className="card__box-front">front of card</div>
+        <div className="card__box-front"></div>
         <div className="card__box-back" style={styles}>
           <span className="card__content">{text}</span>
         </div>
