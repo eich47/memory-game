@@ -22,7 +22,10 @@
 }
 
 .card__box-front {
-  color: violet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffe773;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
   border: 2px solid #bababa;
   border-radius: 15px;
