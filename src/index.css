@@ -377,3 +377,7 @@ template {
 label {
   display: block;
 }
+
+.App {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
