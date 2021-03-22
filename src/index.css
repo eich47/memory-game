@@ -371,8 +371,9 @@ template {
   outline: none;
   background-color: #ffe773;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-label{
+label {
   display: block;
 }
