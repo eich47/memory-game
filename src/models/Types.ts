@@ -15,3 +15,13 @@ export interface Settings {
 //key in the localStorage
 
 export const cardNumberKeyStorage = "card-number";
+
+//all settings from storage
+export interface AllSettings {
+  keyStorage: string;
+  valueStorage: string;
+}
+
+//settings
+
+export const defaultCardsNumber = 12;
