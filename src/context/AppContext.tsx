@@ -28,6 +28,10 @@ const openCard = (card: Card) => {
   console.log("not implement open card function");
 };
 
+const toggleMenu = () => {
+  console.log("not implement toggle menu function");
+};
+
 export const AppContext = createContext({
   cards: [],
   score: 0,
@@ -36,6 +40,8 @@ export const AppContext = createContext({
   stopGame: stopGame,
   openCard: openCard,
   isProgress: false,
+  isOpenMenu: false,
+  toggleMenu: toggleMenu,
 } as {
   cards: Card[];
   score: number | null;
@@ -44,6 +50,8 @@ export const AppContext = createContext({
   stopGame: typeof stopGame;
   openCard: typeof openCard;
   isProgress: boolean;
+  isOpenMenu: boolean;
+  toggleMenu: typeof toggleMenu;
 });
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -58,6 +66,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isProgress, setIsProgress] = React.useState(false);
 
   const [score, setScore] = React.useState<number | null>(null);
+
+  const [isOpenMenu, setIsOpenMenu] = React.useState<boolean>(false);
 
   const startGame = () => {
     const settings: Settings = loadSettingsForGame();
@@ -110,6 +120,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const toggleMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -120,6 +134,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         openCard,
         score,
         isProgress,
+        isOpenMenu,
+        toggleMenu,
       }}
     >
       {children}
