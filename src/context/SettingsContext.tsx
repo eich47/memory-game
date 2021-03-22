@@ -15,10 +15,12 @@ export const SettingsContext = createContext({
   cardsNumber: 12,
   messageCarsNumberError: null,
   handleChangeCarsNumber: handleChangeCarsNumber,
+  successMessage: "",
 } as {
   cardsNumber: number;
   messageCarsNumberError: string | null;
   handleChangeCarsNumber: typeof handleChangeCarsNumber;
+  successMessage: string;
 });
 
 const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
@@ -27,9 +29,17 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
     string | null
   >(null);
 
+  const [successMessage, setSuccessMessage] = React.useState<string>("");
+
   useEffect(() => {
     loadSettings();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 1000);
+  }, [successMessage]);
 
   const loadSettings = (): void => {
     const settings: Settings = loadingSettings();
@@ -39,6 +49,7 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
   const handleChangeCarsNumber = (cardsNumberInput: number) => {
     if (!isCorrectCardsNumberInput(cardsNumberInput)) {
       setMessageCarsNumberError("Введите корректные данные");
+      setSuccessMessage("");
       return;
     }
 
@@ -47,17 +58,24 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
     if (!isRangeNumberCorrect(cardsNumberInput)) {
       setMessageCarsNumberError("Введите четное число от 2 до 18");
       setCardNumber(cardsNumberInput);
+      setSuccessMessage("");
       return;
     }
 
     setCardNumber(cardsNumberInput);
     setMessageCarsNumberError(null);
     saveOption(cardNumberKeyStorage, cardsNumberInput.toString());
+    setSuccessMessage("настройки сохранены");
   };
 
   return (
     <SettingsContext.Provider
-      value={{ cardsNumber, handleChangeCarsNumber, messageCarsNumberError }}
+      value={{
+        cardsNumber,
+        handleChangeCarsNumber,
+        messageCarsNumberError,
+        successMessage,
+      }}
     >
       {children}
     </SettingsContext.Provider>
