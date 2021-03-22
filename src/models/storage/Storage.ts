@@ -1,4 +1,4 @@
-import { AllSettings, Settings } from "../Types";
+import { AllSettings } from "../Types";
 
 export function getItem(name: string): string {
   return localStorage.getItem(name) || "";
