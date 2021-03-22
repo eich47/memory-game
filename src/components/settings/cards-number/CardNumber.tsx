@@ -22,7 +22,6 @@ const CardNumber = (props: CardNumberProps) => {
           type="numeric"
           value={cardsNumber}
           onChange={handleOnChange}
-          onBlur={handleOnChange}
         />
       </label>
       {errorMessage && (
