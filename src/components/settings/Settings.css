@@ -9,6 +9,22 @@
   z-index: 100;
 }
 
+.settings .toggle-menu-button_isOpen {
+  font-size: 0;
+  width: 36px;
+  height: 36px;
+}
+
+.settings .toggle-menu-button_isOpen::before {
+  content: "X";
+  font-size: 2rem;
+}
+
+.settings__container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .settings__title {
   display: inline-block;
   font-size: 2rem;
