@@ -1,4 +1,5 @@
 import React from "react";
+import "./ToggleMenu.css";
 
 interface ToggleMenuProps {
   isOpenMenu: boolean;
@@ -8,7 +9,7 @@ interface ToggleMenuProps {
 const ToggleMenu = (props: ToggleMenuProps) => {
   const { isOpenMenu, handlerClick } = props;
 
-  let toggleClass = "toggle-menu-button";
+  let toggleClass = "button toggle-menu-button";
   if (isOpenMenu) {
     toggleClass += " toggle-menu-button_isOpen";
   }

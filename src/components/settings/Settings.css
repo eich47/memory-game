@@ -4,4 +4,21 @@
   bottom: 0;
   right: 0;
   max-width: 300px;
+  background-color: #fff;
+  padding: 0 10px;
+  z-index: 100;
+}
+
+.settings__title {
+  display: inline-block;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.card-number__error {
+  color: brown;
+}
+
+.card-number__input {
+  margin: 5px 0;
 }

@@ -12,15 +12,25 @@ const Header = () => {
   const { gameState, isOpenMenu, toggleMenu } = useContext(AppContext);
   return (
     <header className="header">
-      {gameState ? <StopGameButton /> : <StartGameButton />}
-      <Score />
-      <ToggleMenu isOpenMenu={isOpenMenu} handlerClick={toggleMenu} />
-
-      {isOpenMenu && (
-        <SettingsProvider>
-          <Settings />
-        </SettingsProvider>
-      )}
+      <div className="wrapper">
+        <div className="header__container">
+          <div className="header__title">Угадай пару</div>
+          <div className="header__column1">
+            {gameState ? <StopGameButton /> : <StartGameButton />}
+          </div>
+          <div className="header__column2">
+            <Score />
+          </div>
+          <div className="header__column3">
+            <ToggleMenu isOpenMenu={isOpenMenu} handlerClick={toggleMenu} />
+          </div>
+          {isOpenMenu && (
+            <SettingsProvider>
+              <Settings />
+            </SettingsProvider>
+          )}
+        </div>
+      </div>
     </header>
   );
 };

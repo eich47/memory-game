@@ -364,3 +364,15 @@ template {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.button {
+  font-size: 1rem;
+  border: 1px solid transparent;
+  outline: none;
+  background-color: #ffe773;
+  border-radius: 5px;
+}
+
+label{
+  display: block;
+}
