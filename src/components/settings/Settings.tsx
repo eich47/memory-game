@@ -28,16 +28,20 @@ const Settings = () => {
       <div className="settings__container2">
         <Info text={successMessage} />
       </div>
-      <CardNumber
-        cardsNumber={cardsNumber}
-        onChangeCarsNumber={handleChangeCarsNumber}
-        errorMessage={messageCarsNumberError}
-      />
-      <CardsTimeout
-        times={timeoutCars}
-        errorMessage={cardsTimesErrorMessage}
-        onChangeTimeoutCards={handlerChangeTimeoutCards}
-      />
+      <div className="settings__container3">
+        <CardNumber
+          cardsNumber={cardsNumber}
+          onChangeCarsNumber={handleChangeCarsNumber}
+          errorMessage={messageCarsNumberError}
+        />
+      </div>
+      <div className="settings__container3">
+        <CardsTimeout
+          times={timeoutCars}
+          errorMessage={cardsTimesErrorMessage}
+          onChangeTimeoutCards={handlerChangeTimeoutCards}
+        />
+      </div>
     </div>
   );
 };
