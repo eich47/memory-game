@@ -14,7 +14,12 @@ import {
   increaseScore,
   resetScore,
 } from "../models/score/ScoreModel";
-import { Card, defaultCardsNumber, Settings } from "../models/Types";
+import {
+  Card,
+  defaultCardsNumber,
+  defaultTimeoutTimes,
+  Settings,
+} from "../models/Types";
 
 const startGame = () => {
   console.log("not implement start game function");
@@ -72,11 +77,15 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const startGame = () => {
     const settings: Settings = loadSettingsForGame();
     setGameState(true);
-    const { cardNumber = defaultCardsNumber } = settings;
+    const {
+      cardNumber = defaultCardsNumber,
+      cardTimes = defaultTimeoutTimes,
+    } = settings;
     const cards: Card[] = generateCards(cardNumber);
     const openedCards = openAllCards(cards);
     setCards(openedCards);
-    const timeOpenCards = 3000;
+    const timeOpenCards = cardTimes * 1000;
+    console.log(timeOpenCards);
     setTimeout(() => {
       const closedCards = closeAllCards(cards);
       setCards(closedCards);

@@ -3,7 +3,9 @@ import {
   AllSettings,
   Card,
   cardNumberKeyStorage,
+  cardsTimesKeyStorage,
   defaultCardsNumber,
+  defaultTimeoutTimes,
   Settings,
 } from "../Types";
 
@@ -21,6 +23,7 @@ export const showRule = (): string => {
 export const loadSettingsForGame = (): Settings => {
   const allSettings: Array<AllSettings> = getAllSettings([
     cardNumberKeyStorage,
+    cardsTimesKeyStorage,
   ]);
 
   const mappedSettings: Settings = {} as Settings;
@@ -29,6 +32,11 @@ export const loadSettingsForGame = (): Settings => {
       case cardNumberKeyStorage: {
         mappedSettings["cardNumber"] =
           +settingsObj.valueStorage || defaultCardsNumber;
+        break;
+      }
+      case cardsTimesKeyStorage: {
+        mappedSettings["cardTimes"] =
+          +settingsObj.valueStorage || defaultTimeoutTimes;
         break;
       }
       default:
