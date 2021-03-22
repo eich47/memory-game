@@ -2,25 +2,42 @@ import React, { createContext, useEffect } from "react";
 import {
   isCorrectCardsNumberInput,
   isRangeNumberCorrect,
+  isRangeTimesCorrect,
   loadingSettings,
   saveOption,
 } from "../models/settings/SettingsModel";
-import { Settings, cardNumberKeyStorage } from "../models/Types";
+import {
+  Settings,
+  cardNumberKeyStorage,
+  cardsTimesKeyStorage,
+} from "../models/Types";
 
 const handleChangeCarsNumber = (carsNumber: number) => {
   console.log("not implement change cars number function");
 };
 
+const handlerChangeTimeoutCards = (times: number) => {
+  console.log("not implement change timeout cards function");
+};
+
 export const SettingsContext = createContext({
+  //count of cards
   cardsNumber: 12,
   messageCarsNumberError: null,
   handleChangeCarsNumber: handleChangeCarsNumber,
   successMessage: "",
+  //timeout cards
+  timeoutCars: 3,
+  handlerChangeTimeoutCards: handlerChangeTimeoutCards,
+  cardsTimesErrorMessage: null,
 } as {
   cardsNumber: number;
   messageCarsNumberError: string | null;
   handleChangeCarsNumber: typeof handleChangeCarsNumber;
   successMessage: string;
+  timeoutCars: number;
+  handlerChangeTimeoutCards: typeof handlerChangeTimeoutCards;
+  cardsTimesErrorMessage: string | null;
 });
 
 const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
@@ -30,6 +47,10 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
   >(null);
 
   const [successMessage, setSuccessMessage] = React.useState<string>("");
+  const [times, setTimes] = React.useState<number>(1);
+  const [cardsTimesErrorMessage, setCardsTimesErrorMessage] = React.useState<
+    string | null
+  >(null);
 
   useEffect(() => {
     loadSettings();
@@ -44,6 +65,7 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
   const loadSettings = (): void => {
     const settings: Settings = loadingSettings();
     setCardNumber(settings.cardNumber);
+    setTimes(settings.cardTimes);
   };
 
   const handleChangeCarsNumber = (cardsNumberInput: number) => {
@@ -68,6 +90,26 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
     setSuccessMessage("настройки сохранены");
   };
 
+  const handlerChangeTimeoutCards = (times: number) => {
+    if (!isCorrectCardsNumberInput(times)) {
+      setCardsTimesErrorMessage("Введите корректные данные");
+      setSuccessMessage("");
+      return;
+    }
+
+    if (!isRangeTimesCorrect(times)) {
+      setCardsTimesErrorMessage("Введите число от 1 до 10");
+      setTimes(times);
+      setSuccessMessage("");
+      return;
+    }
+
+    setTimes(times);
+    setMessageCarsNumberError(null);
+    saveOption(cardsTimesKeyStorage, times.toString());
+    setSuccessMessage("настройки сохранены");
+  };
+
   return (
     <SettingsContext.Provider
       value={{
@@ -75,6 +117,9 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
         handleChangeCarsNumber,
         messageCarsNumberError,
         successMessage,
+        timeoutCars: times,
+        handlerChangeTimeoutCards,
+        cardsTimesErrorMessage,
       }}
     >
       {children}

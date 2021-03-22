@@ -4,6 +4,7 @@ import { SettingsContext } from "../../context/SettingsContext";
 import ToggleMenu from "../buttons/ToggleMenu";
 import Info from "../info/Info";
 import CardNumber from "./cards-number/CardNumber";
+import CardsTimeout from "./cards-timeout/CardsTimeout";
 import "./Settings.css";
 
 const Settings = () => {
@@ -12,6 +13,9 @@ const Settings = () => {
     handleChangeCarsNumber,
     messageCarsNumberError,
     successMessage,
+    timeoutCars,
+    handlerChangeTimeoutCards,
+    cardsTimesErrorMessage,
   } = useContext(SettingsContext);
 
   const { isOpenMenu, toggleMenu } = useContext(AppContext);
@@ -28,6 +32,11 @@ const Settings = () => {
         cardsNumber={cardsNumber}
         onChangeCarsNumber={handleChangeCarsNumber}
         errorMessage={messageCarsNumberError}
+      />
+      <CardsTimeout
+        times={timeoutCars}
+        errorMessage={cardsTimesErrorMessage}
+        onChangeTimeoutCards={handlerChangeTimeoutCards}
       />
     </div>
   );

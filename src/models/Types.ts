@@ -10,11 +10,13 @@ export interface Colors {
 
 export interface Settings {
   cardNumber: number;
+  cardTimes: number;
 }
 
 //key in the localStorage
 
 export const cardNumberKeyStorage = "card-number";
+export const cardsTimesKeyStorage = "card-times";
 
 //all settings from storage
 export interface AllSettings {
@@ -25,3 +27,4 @@ export interface AllSettings {
 //settings
 
 export const defaultCardsNumber = 12;
+export const defaultTimeoutTimes = 3;
