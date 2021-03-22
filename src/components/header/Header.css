@@ -28,5 +28,5 @@
 .header__column3 {
   margin-left: 25px;
   display: flex;
-  min-width: 120px;
+  max-width: 120px;
 }

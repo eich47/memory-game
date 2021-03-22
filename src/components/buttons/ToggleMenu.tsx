@@ -16,7 +16,7 @@ const ToggleMenu = (props: ToggleMenuProps) => {
   return (
     <>
       <button className={toggleClass} type="button" onClick={handlerClick}>
-        {isOpenMenu ? "закрыть меню" : "открыть меню"}
+        {isOpenMenu ? "закрыть настройки" : "открыть настройки"}
       </button>
     </>
   );
