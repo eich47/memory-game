@@ -9,13 +9,13 @@
   z-index: 100;
 }
 
-.settings .toggle-menu-button_isOpen {
+.settings .toggle-menu-button {
   font-size: 0;
   width: 36px;
   height: 36px;
 }
 
-.settings .toggle-menu-button_isOpen::before {
+.settings .toggle-menu-button::before {
   content: "X";
   font-size: 2rem;
 }
