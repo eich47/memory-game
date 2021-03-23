@@ -59,3 +59,18 @@
 .settings__container3 {
   margin-bottom: 20px;
 }
+
+.settings-animate-enter {
+  transform: translateX(300px);
+}
+.settings-animate-enter-active {
+  transform: translateX(0);
+  transition: transform 500ms;
+}
+.settings-animate-exit {
+  transform: translateX(0);
+}
+.settings-animate-exit-active {
+  transform: translateX(300px);
+  transition: transform 100ms;
+}
